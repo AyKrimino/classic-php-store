@@ -21,6 +21,7 @@
     --greyLight-2: #e0e0e0;
     --greyLight-3: #cccccc;
     --greyDark: #999999;
+    --pure-grey: #1e1e1e;
 }
 
 *,
@@ -270,4 +271,135 @@ header .search-bar .search__input:focus + .search-icon {
     font-size: 13px;
     color: var(--muted-text);
     margin-top: 2px;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background: var(--pure-grey);
+    padding: 10px;
+}
+
+footer .footer-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 10px 5px;
+}
+
+.newsletter {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.newsletter h1 {
+    color: var(--accent-color);
+    font-weight: 800;
+}
+
+.newsletter p {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.newsletter form {
+    width: 100%;
+}
+
+.newsletter .newsletter-subscribe {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    width: 40%;
+    min-width: 270px;
+    margin: auto;
+}
+
+.newsletter form input, button {
+    padding: 18px;
+    border: none;
+}
+
+.newsletter form input {
+    border-radius: 10px 0px 0px 10px;
+    width: 70%;
+}
+
+.newsletter form input:focus {
+    border: none;
+    outline: none;
+}
+
+.newsletter form button {
+    border-radius: 0px 10px 10px 0px;
+    background-color: #E20001;
+    color: var(--white);
+    width: 30%
+}
+
+.newsletter form button:hover {
+    background-color: #c00000;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.main-footer {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.main-footer .description {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.main-footer .company {
+    width: 20%;
+}
+
+.main-footer .account {
+    width: 20%;
+}
+
+.main-footer .ressources {
+    width: 20%;
+}
+
+.main-footer .description h3,
+.main-footer .company h3,
+.main-footer .account h3,
+.main-footer .ressources h3
+{
+    color: var(--accent-color);
+}
+
+.main-footer .description p {
+    font-size: 14px;
+}
+
+.main-footer .description .social-media-icons {
+    display: flex;
+    gap: 3px;
+}
+
+.main-footer .description .social-media-icon {
+    padding: 8px;
+    display: flex;
+    background: var(--white);
+}
+
+.main-footer .description .social-media-icon:hover {
+    background: var(--accent-color);
+}
+
+.copyright {
+    padding: 10px 0;
+    text-align: center;
 }
