@@ -1,3 +1,7 @@
+<?php 
+require_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php");
+?>
+
 <header>
     <div class="header-container">
         <nav>
@@ -16,9 +20,9 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#" >
+                        <a href="<?php echo BASE_URL; ?>sign-in.php" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
-                            Login
+                           Sign in 
                         </a>
                     </li>
             </div>
@@ -45,7 +49,9 @@
         <div class="line"></div>
         <section>
             <div class="logo">
-                <h1>Shopping Online</h1>
+                <a href="<?php echo BASE_URL; ?>index.php">
+                    <h1>Shopping Online</h1>
+                </a>
             </div>
             <div class="search-bar">
                 <input type="text" class="search__input" placeholder="Search for products...">

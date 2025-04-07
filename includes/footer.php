@@ -1,3 +1,6 @@
+<?php
+include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php");
+?>
 <footer>
     <div class="footer-container">
         <div class="newsletter">
@@ -68,8 +71,8 @@
             <div class="account">
                 <h3>Account</h3>
                 <ul class="account-links">
-                    <li><a href="#">Log In</a></li>
-                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="<?php echo BASE_URL ?>sign-in.php">Sign In</a></li>
+                    <li><a href="<?php echo BASE_URL ?>sign-up.php">Sign Up</a></li>
                 </ul>
             </div>
         </div>
