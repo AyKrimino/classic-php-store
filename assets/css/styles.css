@@ -13,6 +13,8 @@
     --transition-duration: 200ms;
     --font-sans: 'Open Sans', sans-serif;
     --font-heading: 'Nunito', sans-serif;
+    --submit-btn-color: #E20001;
+    --submit-btn-hover-color: #c00000;
 
     --white: #ffffff;
     --black: #000000;
@@ -335,13 +337,13 @@ footer .footer-container {
 
 .newsletter form button {
     border-radius: 0px 10px 10px 0px;
-    background-color: #E20001;
+    background-color: var(--submit-btn-color);
     color: var(--white);
     width: 30%
 }
 
 .newsletter form button:hover {
-    background-color: #c00000;
+    background-color: var(--submit-btn-hover-color);
     color: var(--white);
     cursor: pointer;
 }
