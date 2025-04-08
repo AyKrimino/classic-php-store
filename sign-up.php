@@ -2,6 +2,10 @@
 include_once("./config/config.php");
 include_once("./config/db_connection.php");
 
+if (isset($_SESSION["user_id"]) && isset($_SESSION["email"])) {
+    header("location:index.php");
+}
+
 /**
  * Registers a new user and returns an array with a message and a toast class color.
  *

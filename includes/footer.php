@@ -1,4 +1,5 @@
 <?php
+include_once("./config/config.php");
 include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php");
 ?>
 <footer>
@@ -71,10 +72,21 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php")
             <div class="account">
                 <h3>Account</h3>
                 <ul class="account-links">
-                    <li><a href="<?php echo BASE_URL ?>sign-in.php">Sign In</a></li>
-                    <li><a href="<?php echo BASE_URL ?>sign-up.php">Sign Up</a></li>
-                </ul>
-            </div>
+                    <?php 
+                    if (isset($_SESSION["user_id"]) && isset($_SESSION["email"])) {
+                    ?>
+<li><a href="<?php echo BASE_URL ?>profile.php">My Account</a></li>
+<li><a href="<?php echo BASE_URL ?>logout.php">Logout</a></li>
+                    <?php
+                    } else {
+                    ?>
+<li><a href="<?php echo BASE_URL ?>sign-in.php">Sign In</a></li>
+<li><a href="<?php echo BASE_URL ?>sign-up.php">Sign Up</a></li>
+                    <?php
+                    }
+                    ?>
+</ul>
+</div>
         </div>
 
         <div class="line"></div>

@@ -1,4 +1,5 @@
 <?php 
+require_once("./config/config.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php");
 ?>
 
@@ -20,12 +21,25 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php")
                         </a>
                     </li>
                     <li class="nav-link">
+                        <?php 
+                        if (isset($_SESSION["user_id"]) && isset($_SESSION["email"])) {
+                        ?>
+                        <a href="<?php echo BASE_URL; ?>logout.php" >
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+Logout 
+</a>
+                        <?php
+                        } else {
+                        ?>
                         <a href="<?php echo BASE_URL; ?>sign-in.php" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
-                           Sign in 
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+Sign in 
                         </a>
-                    </li>
-            </div>
+                        <?php
+                        }
+                        ?>
+</li>
+</div>
             <div class="call-us-link">
                 <a href="#"><span class="phone">Call Us:</span> (+91) 90129 83208</a>
             </div>

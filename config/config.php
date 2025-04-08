@@ -7,5 +7,7 @@ if (DEBUG) {
     error_reporting(E_ALL);
 }
 
+session_start();
+
 define('BASE_URL', '/classic-php-store/');
 ?>
