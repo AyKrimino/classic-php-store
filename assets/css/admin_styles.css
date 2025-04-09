@@ -1,0 +1,165 @@
+:root {
+    --admin-bg: #1e1e1e;
+    --admin-header-bg: #2a2a2a;
+    --admin-footer-bg: #2a2a2a;
+    --admin-accent: #f28b00;
+    --admin-text: #ffffff;
+    --admin-muted: #aaaaaa;
+    --admin-border: #333333;
+
+    --transition-speed: 0.3s;
+    --transition-duration: 200ms;
+
+    --admin-font-sans: 'Open Sans', sans-serif;
+    --admin-font-heading: 'Nunito', sans-serif;
+    --admin-transition: 0.3s ease-in-out;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+    transition: all var(--transition-speed) ease-in-out;
+}
+
+a:hover,
+a:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+    outline: 0;
+    transition: all var(--transition-speed) ease-in-out;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--admin-font-heading);
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--admin-text);
+}
+
+h4 {
+    font-size: 18px;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 400;
+    background-color: var(--admin-bg);
+    color: var(--admin-text);
+    overflow-x: hidden;
+    position: relative;
+}
+
+header {
+    background-color: var(--admin-header-bg);
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--admin-border);
+    font-family: var(--admin-font-sans);
+}
+
+.header-content {
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 24px;
+    height: 24px;
+    stroke: var(--admin-accent);
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-section svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--admin-text);
+}
+
+.search-section input[type="text"] {
+    padding: 5px 20px;
+    background-color: var(--admin-bg);
+    border: 1px solid var(--admin-border);
+    color: var(--admin-text);
+    border-radius: 4px;
+    transition: var(--admin-transition);
+}
+
+.search-section input[type="text"]::placeholder {
+    color: var(--admin-muted);
+}
+
+.search-section input[type="text"]:focus {
+    outline: none;
+    border-color: var(--admin-accent);
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-section svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--admin-text);
+}
+
+.user-section p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--admin-text);
+}
+
+footer {
+    background-color: var(--admin-footer-bg);
+    padding: 15px 20px;
+    text-align: center;
+    border-top: 1px solid var(--admin-border);
+    font-family: var(--admin-font-sans);
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--admin-muted);
+}
