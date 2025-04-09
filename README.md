@@ -29,9 +29,9 @@ This is a **simple e-commerce application** built with **PHP (procedural style)*
 - Create a new database (for example, classic_php_store).
 - Import the SQL schema located in config/schema.sql.
 > Example using the MySQL shell:
-    ```bash
-    mysql -u your_username -p classic_php_store < config/schema.sql
-    ```
+```bash
+mysql -u your_username -p classic_php_store < config/schema.sql
+```
 
 3. **Configure Database Credentials**
 
@@ -55,9 +55,10 @@ DB_NAME=your_database_name
 - For XAMPP/LAMPP Users: Place the project folder in your /opt/lampp/htdocs/ directory.
 - Other Web Servers: Configure your virtual host to point to the project directory.
 > Open your browser and navigate to:
-    ```bash
-    http://localhost/classic-php-store
-    ```
+
+```bash
+http://localhost/classic-php-store
+```
 
 ---
 
