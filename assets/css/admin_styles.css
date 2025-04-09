@@ -163,3 +163,56 @@ footer p {
     font-size: 14px;
     color: var(--admin-muted);
 }
+
+.sidebar-container {
+    background-color: var(--admin-header-bg); 
+    color: var(--admin-text);
+    padding: 20px;
+    width: 250px;
+    min-height: 90vh; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-container h1 {
+    font-family: var(--admin-font-heading);
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.sidebar-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: var(--admin-text);
+    background-color: transparent;
+    border-radius: 4px;
+    transition: background var(--admin-transition), color var(--admin-transition);
+}
+
+.sidebar-item:hover {
+    background-color: var(--admin-accent);
+    color: var(--admin-bg);
+    cursor: pointer;
+}
+
+.sidebar-item.active {
+    background-color: var(--admin-accent);
+    color: var(--admin-bg);
+    font-weight: bold;
+}
+
+.sidebar-item-icon {
+    width: 24px;
+    height: 24px;
+}

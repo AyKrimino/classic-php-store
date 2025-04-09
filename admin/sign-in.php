@@ -12,6 +12,7 @@ include_once("../config/config.php");
     </head>
     <body>
         <?php include_once("../includes/admin_header.php"); ?>
+        <?php include_once("../includes/admin_sidebar.php"); ?>
         <?php include_once("../includes/admin_footer.php"); ?>
     </body>
 </html>

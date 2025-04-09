@@ -1,7 +1,7 @@
 <?php
-include_once("./config/config.php");
 include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php");
 ?>
+
 <footer>
     <div class="footer-container">
         <div class="newsletter">
