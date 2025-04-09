@@ -43,7 +43,7 @@ function loginUser($connection, $data) {
 
     $_SESSION["user_id"] = $row["user_id"];
     $_SESSION["email"] = $email;
-    $_SESSION["role"] = $row["role"];
+    $_SESSION["user_role"] = $row["role"];
     header("location:admin-dashboard.php");
     exit();
 
