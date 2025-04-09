@@ -1,6 +1,9 @@
 <?php
-
-$env = parse_ini_file("./.env");
+if (php_sapi_name() === "cli") {
+    $env = parse_ini_file(__DIR__ . "/../.env");
+} else {
+    $env = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/.env");
+}
 
 define("HOSTNAME", $env["DB_HOST"]);
 define("USERNAME", $env["DB_USER"]);
