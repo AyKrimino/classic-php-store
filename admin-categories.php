@@ -1,5 +1,39 @@
 <?php 
 include_once("./config/config.php");
+include_once("./config/db_connection.php");
+
+function loadCategories() {
+}
+
+function createCategory($connection, $data) {
+    $name = $data["name"];
+    $description = $data["description"];
+
+    $query = "insert into Category (name, description) values (?, ?)";
+
+    $statement = mysqli_prepare($connection, $query);
+    if (!$statement) {
+        return "Error preparing query: " . mysqli_error($connection);
+    }
+
+    mysqli_stmt_bind_param($statement, "ss", $name, $description);
+
+    if (mysqli_stmt_execute($statement)) {
+        return "Category created successfully!";
+    } 
+    return "Error executing statement: " . mysqli_error($connection);
+
+}
+
+function updateCategory() {
+}
+
+function deleteCategory() {
+}
+
+if (isset($_POST["add"])) {
+    createCategory($connection, $_POST);
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +52,10 @@ include_once("./config/config.php");
             <section class="content-section">
                 <div class="create-section">
                     <h1>Categories</h1>
-                    <form method="POST" action="">
-                        <input type="text" name="name" id="name" placeholder="Name" />
+                    <form method="POST" action="admin-categories.php">
+                        <input type="text" name="name" id="name" placeholder="Name" required />
                         <input type="text" name="description" placeholder="Description..." id="description" />
-                        <button type="submit" name="submit">SUBMIT</button>
+                        <button type="submit" name="add">ADD</button>
                     </form>
                 </div>
                 <div class="categories-section">
