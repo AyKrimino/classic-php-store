@@ -19,7 +19,7 @@ foreach ($active as $key => $value) {
 }
 ?>
 
-<section>
+<section class="sidebar-section">
     <div class="sidebar-container">
         <h1>Admin Panel Options</h1>
         <ul class="sidebar-items">

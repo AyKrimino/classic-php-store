@@ -164,6 +164,14 @@ footer p {
     color: var(--admin-muted);
 }
 
+.main-section {
+    display: flex;
+}
+
+.sidebar-section {
+    width: 250px;
+}
+
 .sidebar-container {
     background-color: var(--admin-header-bg); 
     color: var(--admin-text);
@@ -215,4 +223,9 @@ footer p {
 .sidebar-item-icon {
     width: 24px;
     height: 24px;
+}
+
+.content-section {
+    flex: 1;
+    padding: 10px 20px;
 }
