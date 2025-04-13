@@ -56,8 +56,24 @@ function createSubCategory($connection, $data) {
     return "Error executing statement: " . mysqli_error($connection);
 }
 
+function deleteSubCategory($connection, $data) {
+    $subCategoryID = (int)$data["subcategory_id2"];
+    
+    $query = "DELETE FROM Subcategory WHERE subcategory_id = $subCategoryID";
+    $res = mysqli_query($connection, $query);
+    
+    if ($res) {
+        return "Category with id " . $subCategoryID . " deleted successfully.";
+    }
+    return "Error on delete category with id " . $subCategoryID;
+}
+
 if (isset($_POST["add"])) {
     createSubCategory($connection, $_POST);
+}
+
+if (isset($_POST["delete"])) {
+    deleteSubCategory($connection, $_POST);
 }
 
 $categories = loadCategories($connection);
