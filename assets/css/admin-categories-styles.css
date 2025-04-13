@@ -22,7 +22,7 @@
     width: 100%;
 }
 
-.create-section input {
+.create-section input, select {
     padding: 15px 20px;
     width: 250px;
     border: 1px solid var(--admin-muted);

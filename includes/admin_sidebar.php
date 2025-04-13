@@ -4,6 +4,7 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php")
 $active = array(
     "dashboard" => false,
     "categories" => false,
+    "subCategories" => false,
     "products" => false,
     "orders" => false,
     "customers" => false,
@@ -31,6 +32,11 @@ foreach ($active as $key => $value) {
             <li class="sidebar-item <?php echo ($active["categories"]) ? "active" : "" ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-list-icon lucide-layout-list"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><path d="M14 4h7"/><path d="M14 9h7"/><path d="M14 15h7"/><path d="M14 20h7"/></svg>
                 <a href="<?php echo BASE_URL; ?>admin-categories.php">Categories</a>
+            </li>
+
+            <li class="sidebar-item <?php echo ($active["subCategories"]) ? "active" : "" ?>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-replace-icon lucide-replace"><path d="M14 4a2 2 0 0 1 2-2"/><path d="M16 10a2 2 0 0 1-2-2"/><path d="M20 2a2 2 0 0 1 2 2"/><path d="M22 8a2 2 0 0 1-2 2"/><path d="m3 7 3 3 3-3"/><path d="M6 10V5a3 3 0 0 1 3-3h1"/><rect x="2" y="14" width="8" height="8" rx="2"/></svg>
+                <a href="<?php echo BASE_URL; ?>admin-subCategories.php">Sub Categories</a>
             </li>
 
             <li class="sidebar-item <?php echo ($active["products"]) ? "active" : "" ?>">
