@@ -68,12 +68,37 @@ function deleteSubCategory($connection, $data) {
     return "Error on delete category with id " . $subCategoryID;
 }
 
+function updateSubCategory($connection, $data) {
+    $subCategoryID = (int)$data["subCategory_id"];
+    $categoryID = (int)$data["category"];
+    $name = $data["name"];
+    $description = $data["description"];
+
+    $query = "update Subcategory set category_id = ?, name = ?, description = ? where subcategory_id = ?";
+
+    $statement = mysqli_prepare($connection, $query);
+    if (!$statement) {
+        return "Error preparing query: " . mysqli_error($connection);
+    }
+
+    mysqli_stmt_bind_param($statement, "issi", $categoryID, $name, $description, $subCategoryID);
+
+    if (mysqli_stmt_execute($statement)) {
+        return "SubCategory with id " . $subCategoryID . " updated successfully.";
+    }
+    return "Error executing statement: " . mysqli_error($connection);
+}
+
 if (isset($_POST["add"])) {
     createSubCategory($connection, $_POST);
 }
 
 if (isset($_POST["delete"])) {
     deleteSubCategory($connection, $_POST);
+}
+
+if (isset($_POST["update"])) {
+    updateSubCategory($connection, $_POST);
 }
 
 $categories = loadCategories($connection);
@@ -111,7 +136,7 @@ $subCategories = loadSubCategories($connection);
                             </option>
                             <?php } ?>
                         </select> 
-                        <input type="hidden" name="sub_category_id" id="sub_category_id" />
+                        <input type="hidden" name="subCategory_id" id="subCategory_id" />
                         <button type="submit" name="add" id="add">ADD</button>
                         <button type="submit" name="update" hidden id="update">UPDATE</button>
                     </form>
@@ -127,6 +152,8 @@ $subCategories = loadSubCategories($connection);
                         <svg 
                             class="lucide lucide-pencil-line-icon lucide-pencil-line edit"
                             data-sub-category-id="<?php echo $subCategory['subcategory_id']; ?>" 
+                            data-category-id="<?php echo $subCategory['category_id']; ?>"
+                            data-category-name="<?php echo htmlspecialchars($subCategory['category_name'], ENT_QUOTES); ?>"
                             data-name="<?php echo htmlspecialchars($subCategory['name'], ENT_QUOTES); ?>" 
                             data-description="<?php echo htmlspecialchars($subCategory['description'], ENT_QUOTES); ?>"
                             xmlns="http://www.w3.org/2000/svg" 
@@ -172,5 +199,7 @@ $subCategories = loadSubCategories($connection);
             </section>
         </main>
         <?php include_once("./includes/admin_footer.php"); ?>
+
+        <script src="./assets/js/subCategories.js"></script>
     </body>
 </html>
