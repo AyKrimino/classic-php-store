@@ -55,7 +55,16 @@ function updateCategory($connection, $data) {
     return "Error executing statement: " . mysqli_error($connection);
 }
 
-function deleteCategory() {
+function deleteCategory($connection, $data) {
+    $categoryID = (int)$data["category_id2"];
+    
+    $query = "DELETE FROM Category WHERE category_id = $categoryID";
+    $res = mysqli_query($connection, $query);
+    
+    if ($res) {
+        return "Category with id " . $categoryID . " deleted successfully.";
+    }
+    return "Error on delete category with id " . $categoryID;
 }
 
 if (isset($_POST["add"])) {
@@ -64,6 +73,10 @@ if (isset($_POST["add"])) {
 
 if (isset($_POST["update"])) {
     updateCategory($connection, $_POST);
+}
+
+if (isset($_POST["delete"])) {
+    deleteCategory($connection, $_POST);
 }
 
 $categories = loadCategories($connection);
@@ -118,23 +131,28 @@ $categories = loadCategories($connection);
                             <path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/>
                             <path d="m15 5 3 3"/>
                         </svg>
-                        <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            width="24" 
-                            height="24" 
-                            viewBox="0 0 24 24" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            stroke-width="2" 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round" 
-                            class="lucide lucide-trash2-icon lucide-trash-2"
-                        >
-                            <path d="M3 6h18"/>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-                            <line x1="10" x2="10" y1="11" y2="17"/>
-                            <line x1="14" x2="14" y1="11" y2="17"/>
-                        </svg>
+                        <form action="admin-categories.php" method="POST" class="delete-form" style="display:inline-block;">
+                            <input type="hidden" name="category_id2" value="<?php echo $category['category_id']; ?>" />
+                            <button type="submit" name="delete" class="delete-btn">
+                                <svg 
+                                    class="lucide lucide-trash2-icon lucide-trash-2 delete"
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    width="24" 
+                                    height="24" 
+                                    viewBox="0 0 24 24" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    stroke-width="2" 
+                                    stroke-linecap="round" 
+                                    stroke-linejoin="round">
+                                    <path d="M3 6h18"/>
+                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                    <line x1="10" x2="10" y1="11" y2="17"/>
+                                    <line x1="14" x2="14" y1="11" y2="17"/>
+                                </svg>
+                            </button>
+                        </form>
                     </div>
                     <?php
                     }
