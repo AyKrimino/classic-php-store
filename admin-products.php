@@ -1,6 +1,82 @@
 <?php 
 include_once("./config/config.php");
 include_once("./config/db_connection.php");
+
+function loadSubCategories($connection) {
+    $query = "select * from Subcategory";
+    $res = mysqli_query($connection, $query);
+
+    $rows = [];
+    while($row = mysqli_fetch_assoc($res)) {
+        array_push($rows, $row);
+    }
+
+    return $rows;
+}
+
+function createProduct($connection, $data, $files) {
+    $uploadDir = __DIR__ . "/assets/images/products/";
+
+    $images = [];
+    foreach (["image1", "image2", "image3"] as $key) {
+        if (isset($files[$key]) && $files[$key]["error"] === UPLOAD_ERR_OK) {
+            $tmpName = $files[$key]["tmp_name"];
+            $fileName = basename($files[$key]["name"]);
+            $targetFile = $uploadDir . uniqid() . "_" . $fileName;
+
+            if (move_uploaded_file($tmpName, $targetFile)) {
+                $images[$key] = $targetFile;
+            } else {
+                $images[$key] = null;
+            }
+        } else {
+            $images[$key] = null;
+        }
+    }
+
+    $name = $data["name"];
+    $description = $data["description"];
+    $company = $data["company"];
+    $price = (float)$data["price"];
+    $subCategoryID = (int)$data["subcategory"];
+    $stock = (int)$data["stock"];
+
+    $query = "
+    insert into Product 
+    (name, description, company, image1, image2, image3, price, subcategory_id, stock)
+    values (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ";
+    $statement = mysqli_prepare($connection, $query);
+    if (!$statement) {
+        return "Error preparing query: " . mysqli_error($connection);
+    }
+
+    mysqli_stmt_bind_param(
+        $statement, 
+        "ssssssdii", 
+        $name, 
+        $description, 
+        $company, 
+        $images["image1"], 
+        $images["image2"], 
+        $images["image3"], 
+        $price, 
+        $subCategoryID, 
+        $stock
+    );
+
+    if (mysqli_stmt_execute($statement)) {
+        return "Product created successfully!";
+    } else {
+        return "Error executing statement: " . mysqli_error($connection);
+    }
+}
+
+if (isset($_POST["create"])) {
+    createProduct($connection, $_POST, $_FILES);
+}
+
+$subCategories = loadSubCategories($connection);
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +104,10 @@ include_once("./config/db_connection.php");
                         <input type="file" name="image3" accept="image/*" />
                         <input type="number" step="0.01" name="price" placeholder="Price" required />
                         <select name="subcategory" id="subcategory">
-                            <option selected>Subcategory</option>
-                            <option value="">Mac book</option>
-                            <option value="">Dell</option>
+                            <option selected value="">Subcategory</option>
+                            <?php foreach($subCategories as $subCategory) { ?>
+                                <option value="<?php echo $subCategory["subcategory_id"]; ?>"><?php echo $subCategory["name"]; ?></option>
+                            <?php } ?>
                         </select>
                         <input type="number" name="stock" placeholder="Stock" required />
                         <button type="submit" name="create">Create Product</button>
