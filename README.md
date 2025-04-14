@@ -62,6 +62,23 @@ http://localhost/classic-php-store
 
 ---
 
+## 🔧 Assets Setup
+
+Before uploading product images, you need to ensure that the appropriate directory exists and is writable by your web server. Follow these steps:
+
+1. **Create the Directory**  
+   In your project root, create the `assets/images/products/` directory if it doesn't already exist:
+   ```bash
+   mkdir -p assets/images/products
+   ```
+2. **Set Directory Permissions*
+   Change the permissions of the directory to allow file uploads:
+   ```bash
+   chmod 777 assets/images/products
+   ```
+
+---
+
 ## 🛠 Creating an Admin Account
 
 To create an admin account for testing purposes, follow these steps:
