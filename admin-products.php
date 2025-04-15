@@ -100,8 +100,24 @@ function createProduct($connection, $data, $files) {
     }
 }
 
+function deleteProduct($connection, $data) {
+    $productID = (int)$data["product_id"];
+
+    $query = "DELETE FROM Product WHERE product_id = $productID";
+    $res = mysqli_query($connection, $query);
+    
+    if ($res) {
+        return "Category with id " . $productID . " deleted successfully.";
+    }
+    return "Error on delete category with id " . $productID;
+}
+
 if (isset($_POST["create"])) {
     createProduct($connection, $_POST, $_FILES);
+}
+
+if (isset($_POST["delete"])) {
+    deleteProduct($connection, $_POST);
 }
 
 $subCategories = loadSubCategories($connection);
@@ -163,6 +179,45 @@ $products = loadProducts($connection, $subCategories);
                                 <span class="price"><?php echo $product["price"]; ?></span> | 
                                 <span class="stock"><?php echo $product["stock"]; ?></span>
                             </p>
+
+
+                            <svg 
+                                class="lucide lucide-pencil-line-icon lucide-pencil-line edit"
+                                xmlns="http://www.w3.org/2000/svg" 
+                                width="24" 
+                                height="24" 
+                                viewBox="0 0 24 24" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                stroke-width="2" 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round">
+                                <path d="M12 20h9"/>
+                                <path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/>
+                                <path d="m15 5 3 3"/>
+                            </svg>
+                            <form action="admin-products.php" method="POST" class="delete-form" style="display:inline-block;">
+                                <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>" />
+                                <button type="submit" name="delete" class="delete-btn">
+                                    <svg 
+                                        class="lucide lucide-trash2-icon lucide-trash-2 delete"
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        width="24" 
+                                        height="24" 
+                                        viewBox="0 0 24 24" 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        stroke-width="2" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round">
+                                        <path d="M3 6h18"/>
+                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                        <line x1="10" x2="10" y1="11" y2="17"/>
+                                        <line x1="14" x2="14" y1="11" y2="17"/>
+                                    </svg>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <?php } ?>
