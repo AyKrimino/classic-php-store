@@ -17,6 +17,28 @@ function getSubCategoryNameByID($subCategories, $subCategoryID) {
     return "Not found";
 }
 
+function getImages($files) {
+    $uploadDir = __DIR__ . "/assets/images/products/";
+
+    $images = [];
+    foreach (["image1", "image2", "image3"] as $key) {
+        if (isset($files[$key]) && $files[$key]["error"] === UPLOAD_ERR_OK) {
+            $tmpName = $files[$key]["tmp_name"];
+            $fileName = basename($files[$key]["name"]);
+            $targetFile = $uploadDir . uniqid() . "_" . $fileName;
+
+            if (move_uploaded_file($tmpName, $targetFile)) {
+                $images[$key] = $targetFile;
+            } else {
+                $images[$key] = null;
+            }
+        } else {
+            $images[$key] = null;
+        }
+    }
+    return $images;
+}
+
 function loadSubCategories($connection) {
     $query = "select * from Subcategory";
     $res = mysqli_query($connection, $query);
@@ -43,24 +65,7 @@ function loadProducts($connection, $subCategories) {
 }
 
 function createProduct($connection, $data, $files) {
-    $uploadDir = __DIR__ . "/assets/images/products/";
-
-    $images = [];
-    foreach (["image1", "image2", "image3"] as $key) {
-        if (isset($files[$key]) && $files[$key]["error"] === UPLOAD_ERR_OK) {
-            $tmpName = $files[$key]["tmp_name"];
-            $fileName = basename($files[$key]["name"]);
-            $targetFile = $uploadDir . uniqid() . "_" . $fileName;
-
-            if (move_uploaded_file($tmpName, $targetFile)) {
-                $images[$key] = $targetFile;
-            } else {
-                $images[$key] = null;
-            }
-        } else {
-            $images[$key] = null;
-        }
-    }
+    $images = getImages($files);
 
     $name = $data["name"];
     $description = $data["description"];
@@ -112,8 +117,70 @@ function deleteProduct($connection, $data) {
     return "Error on delete category with id " . $productID;
 }
 
+function updateProduct($connection, $data, $files) {
+    $images = getImages($files);
+
+    $productID = $data["product_id"];
+    $name = $data["name"];
+    $description = $data["description"];
+    $company = $data["company"];
+    $price = (float)$data["price"];
+    $subCategoryID = (int)$data["subcategory"];
+    $stock = (int)$data["stock"];
+    $current_date = date("Y-m-d H:i:s");
+
+    $query = "
+        UPDATE Product 
+        SET name = ?, 
+            description = ?, 
+            company = ?, ";
+
+    $bindTypes   = "sss";  
+    $bindParams  = [$name, $description, $company];
+
+    foreach (["image1", "image2", "image3"] as $key) {
+        if ($images[$key] != "") {
+            $query .= "$key = ?, ";
+            $bindTypes .= "s";
+            $bindParams[] = $images[$key];
+        }
+    }
+
+    $query .= "price = ?, subcategory_id = ?, stock = ?, updated_at = ? WHERE product_id = ?";
+
+    $bindTypes .= "diisi";
+    $bindParams[] = $price;
+    $bindParams[] = $subCategoryID;
+    $bindParams[] = $stock;
+    $bindParams[] = $current_date;
+    $bindParams[] = $productID;
+
+    $statement = mysqli_prepare($connection, $query);
+    if (!$statement) {
+        return "Error preparing query: " . mysqli_error($connection);
+    }
+
+    $bindNames = [];
+    $bindNames[] = $bindTypes;
+    foreach ($bindParams as $key => $value) {
+        $bindNames[] = &$bindParams[$key];
+    }
+
+    call_user_func_array(array($statement, 'bind_param'), $bindNames);
+
+    if (mysqli_stmt_execute($statement)) {
+        return "Product updated successfully!";
+    } else {
+        return "Error executing statement: " . mysqli_error($connection);
+    }
+}
+
 if (isset($_POST["create"])) {
     createProduct($connection, $_POST, $_FILES);
+}
+
+if (isset($_POST["update"])) {
+    updateProduct($connection, $_POST, $_FILES);
 }
 
 if (isset($_POST["delete"])) {
@@ -141,22 +208,23 @@ $products = loadProducts($connection, $subCategories);
                 <div class="create-section">
                     <h1>Products</h1>
                     <form method="POST" action="admin-products.php" enctype="multipart/form-data">
-                        <input type="text" name="name" placeholder="Product Name" required />
-                        <textarea name="description" placeholder="Product Description"></textarea>
-                        <input type="text" name="company" placeholder="Company" />
-                        <input type="file" name="image1" accept="image/*" />
-                        <input type="file" name="image2" accept="image/*" />
-                        <input type="file" name="image3" accept="image/*" />
-                        <input type="number" step="0.01" name="price" placeholder="Price" required />
+                        <input id="name" type="text" name="name" placeholder="Product Name" required />
+                        <textarea id="description" name="description" placeholder="Product Description"></textarea>
+                        <input id="company" type="text" name="company" placeholder="Company" />
+                        <input id="image1" type="file" name="image1" accept="image/*" />
+                        <input id="image2" type="file" name="image2" accept="image/*" />
+                        <input id="image3" type="file" name="image3" accept="image/*" />
+                        <input id="price" type="number" step="0.01" name="price" placeholder="Price" required />
                         <select name="subcategory" id="subcategory">
                             <option selected value="">Subcategory</option>
                             <?php foreach($subCategories as $subCategory) { ?>
                                 <option value="<?php echo $subCategory["subcategory_id"]; ?>"><?php echo $subCategory["name"]; ?></option>
                             <?php } ?>
                         </select>
-                        <input type="number" name="stock" placeholder="Stock" required />
-                        <button type="submit" name="create">Create Product</button>
-                        <button type="submit" name="update" hidden>Update Product</button>
+                        <input id="stock" type="number" name="stock" placeholder="Stock" required />
+                        <input type="hidden" name="product_id" id="product_id">
+                        <button id="create" type="submit" name="create">Create Product</button>
+                        <button id="update" type="submit" name="update" hidden>Update Product</button>
                     </form>
                 </div>
 
@@ -183,6 +251,14 @@ $products = loadProducts($connection, $subCategories);
 
                             <svg 
                                 class="lucide lucide-pencil-line-icon lucide-pencil-line edit"
+                                data-product-id="<?php echo $product["product_id"]; ?>"
+                                data-name="<?php echo htmlspecialchars($product["name"], ENT_QUOTES); ?>"
+                                data-company="<?php echo htmlspecialchars($product["company"], ENT_QUOTES); ?>"
+                                data-description="<?php echo htmlspecialchars($product["description"], ENT_QUOTES); ?>"
+                                data-price="<?php echo $product["price"]; ?>"
+                                data-subcategory-name="<?php echo htmlspecialchars($product["subcategory_name"], ENT_QUOTES); ?>"
+                                data-subcategory-id="<?php echo $product["subcategory_id"]; ?>"
+                                data-stock="<?php echo $product["stock"]; ?>"
                                 xmlns="http://www.w3.org/2000/svg" 
                                 width="24" 
                                 height="24" 
