@@ -2,12 +2,40 @@
 include_once("./config/config.php");
 include_once("./config/db_connection.php");
 
+function getRelativePath($absolutePath) {
+    if ($absolutePath === "")
+        return "";
+    return substr($absolutePath, strpos($absolutePath, "assets"));
+}
+
+function getSubCategoryNameByID($subCategories, $subCategoryID) {
+    foreach ($subCategories as $subCategory) {
+        if ($subCategory["subcategory_id"] == $subCategoryID) {
+            return $subCategory["name"];
+        }
+    }
+    return "Not found";
+}
+
 function loadSubCategories($connection) {
     $query = "select * from Subcategory";
     $res = mysqli_query($connection, $query);
 
     $rows = [];
     while($row = mysqli_fetch_assoc($res)) {
+        array_push($rows, $row);
+    }
+
+    return $rows;
+}
+
+function loadProducts($connection, $subCategories) {
+    $query = "select * from Product";
+    $res = mysqli_query($connection, $query);
+
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($res)) {
+        $row["subcategory_name"] = getSubCategoryNameByID($subCategories, $row["subcategory_id"]);
         array_push($rows, $row);
     }
 
@@ -77,6 +105,7 @@ if (isset($_POST["create"])) {
 }
 
 $subCategories = loadSubCategories($connection);
+$products = loadProducts($connection, $subCategories);
 ?>
 
 <!DOCTYPE html>
@@ -116,25 +145,27 @@ $subCategories = loadSubCategories($connection);
                 </div>
 
                 <div class="products-section">
+                    <?php foreach($products as $product) { ?>
                     <div class="product-card">
                         <div class="slider">
                             <div class="slides">
-                                <img class="product-img" hidden src="./assets/images/book1.jpg" alt="Product Image 1" />
-                                <img class="product-img" hidden src="./assets/images/toys1.jpg" alt="Product Image 2" />
-                                <img class="product-img" src="./assets/images/kitchen1.jpg" alt="Product Image 3" />
+                                <img class="product-img" hidden src="<?php echo getRelativePath(($product["image1"]) ? $product["image1"] : ""); ?>" alt="Product Image 1" />
+                                <img class="product-img" hidden src="<?php echo getRelativePath(($product["image2"]) ? $product["image2"] : ""); ?>" alt="Product Image 2" />
+                                <img class="product-img" hidden src="<?php echo getRelativePath(($product["image3"] !== null) ? $product["image3"] : ""); ?>" alt="Product Image 3" />
                             </div>
                         </div>
 
                         <div class="product-info">
-                            <h3>Sample Product</h3>
-                            <h5>Subcategory | company</h5>
-                            <p>This is a sample product description. It gives an overview of the product features.</p>
+                            <h3><?php echo $product["name"]; ?></h3>
+                            <h5><?php echo $product["subcategory_name"]; ?> | <?php echo $product["company"]; ?></h5>
+                            <p><?php echo $product["description"]; ?></p>
                             <p>
-                                <span class="price">$99.99</span> | 
-                                <span class="stock">Stock: 15</span>
+                                <span class="price"><?php echo $product["price"]; ?></span> | 
+                                <span class="stock"><?php echo $product["stock"]; ?></span>
                             </p>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </section>
         </main>
