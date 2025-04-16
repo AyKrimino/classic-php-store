@@ -2,6 +2,10 @@
 include_once("./config/config.php");
 include_once("./config/db_connection.php");
 
+if (!isset($_SESSION["user_role"]) && $_SESSION["user_role"] !== "admin") {
+    header("location:admin-sign-in.php");
+}
+
 function getCategoryNameByCategoryID($connection, $categoryID) {
     $query = "select name from Category where category_id = $categoryID";
     $res = mysqli_query($connection, $query);

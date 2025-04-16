@@ -41,8 +41,8 @@ function loginUser($connection, $data) {
         ];
     }
 
-    $_SESSION["user_id"] = $row["user_id"];
-    $_SESSION["email"] = $email;
+    $_SESSION["admin_user_id"] = $row["user_id"];
+    $_SESSION["admin_email"] = $email;
     $_SESSION["user_role"] = $row["role"];
     header("location:admin-dashboard.php");
     exit();

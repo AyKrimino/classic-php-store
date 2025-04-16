@@ -2,6 +2,10 @@
 include_once("./config/config.php");
 include_once("./config/db_connection.php");
 
+if (!isset($_SESSION["user_role"]) && $_SESSION["user_role"] !== "admin") {
+    header("location:admin-sign-in.php");
+}
+
 function getRelativePath($absolutePath) {
     if ($absolutePath === "")
         return "";
