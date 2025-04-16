@@ -1,3 +1,22 @@
+<?php 
+include_once("./config/config.php");
+include_once("./config/db_connection.php");
+
+function loadCategories($connection) {
+    $query = "SELECT * FROM Category LIMIT 8";
+    $res = mysqli_query($connection, $query);
+
+    $rows = [];
+    while($row = mysqli_fetch_assoc($res)) {
+        array_push($rows, $row);
+    }
+
+    return $rows;
+}
+
+$categories = loadCategories($connection);
+?>
+
 <section class="home-hero">
     <div class="categories-box">
         <div class="categories-header">
@@ -5,10 +24,13 @@
             <span>CATEGORIES</span>
         </div>
         <ul class="category-list">
-            <li><i class="fas fa-desktop"></i> BOOKS <span>›</span></li>
-            <li><i class="fas fa-desktop"></i> ELECTRONICS <span>›</span></li>
-            <li><i class="fas fa-desktop"></i> TOYS & GAMES <span>›</span></li>
-            <li><i class="fas fa-desktop"></i> KITCHEN <span>›</span></li>
+            <?php foreach ($categories as $category) { ?>
+            <li>
+                <i class="fas fa-desktop"></i>
+                <?php echo strtoupper($category["name"]); ?> 
+                <span>›</span>
+            </li>
+            <?php } ?>
         </ul>
     </div>
 
