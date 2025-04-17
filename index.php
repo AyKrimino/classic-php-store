@@ -10,6 +10,8 @@
     <body>
         <?php include("./includes/header.php"); ?>
         <?php include("./includes/home_hero_section.php"); ?>
+        <?php include("./includes/last_products.php"); ?>
         <?php include("./includes/footer.php"); ?>
+        <script src="./assets/js/products.js"></script>
     </body>
 </html>
