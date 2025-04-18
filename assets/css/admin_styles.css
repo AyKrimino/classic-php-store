@@ -177,11 +177,13 @@ footer p {
     color: var(--admin-text);
     padding: 20px;
     width: 250px;
-    min-height: 90vh; 
+    height: 100%; 
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-container h1 {
+    position: sticky;
+    top: 20px;
     font-family: var(--admin-font-heading);
     font-size: 20px;
     margin-bottom: 20px;
@@ -190,6 +192,8 @@ footer p {
 }
 
 .sidebar-items {
+    position: sticky;
+    top: 85px;
     margin: 0;
     padding: 0;
     list-style: none;
