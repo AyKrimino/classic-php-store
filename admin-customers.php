@@ -125,13 +125,6 @@ $customers = loadCustomers($connection);
             </section>
         </main>
         <?php include_once("./includes/admin_footer.php"); ?>
-        <script>
-// Select All / Deselect All
-document.getElementById('select-all')
-    .addEventListener('change', function() {
-        document.querySelectorAll('.row-checkbox')
-            .forEach(cb => cb.checked = this.checked);
-    });
-        </script>
+        <script src="./assets/js/adminCustomers.js"></script>
     </body>
 </html>
