@@ -63,7 +63,7 @@ $products = loadProducts($connection, $subCategories);
             <p><?php echo htmlspecialchars($product["description"]); ?></p>
             <p>
                 <span class="price"><?php echo number_format($product["price"],2); ?> DT</span> |
-                <span class="stock"><?php echo $product["stock"] > 0 ? "In Stock: ".$product["stock"] : "Out of Stock"; ?></span>
+                <span class="stock"><?php echo $product["stock"] > 0 ? "<span style='color: green;'>In Stock</span>" : "<span style='color: #e74c3c;'>Out of Stock</span>"; ?></span>
             </p>
         </div>
 
