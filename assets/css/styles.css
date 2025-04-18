@@ -602,3 +602,26 @@ footer .footer-container {
     font-weight: bold;
     align-self: center;
 }
+
+.see-all-products-section {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.see-all-products-section .see-all {
+    background: var(--accent-color);
+    padding: 25px 65px;
+    border-radius: 4px;
+    margin: 10px 0;
+    display: inline-block;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.see-all-products-section .see-all:hover {
+    cursor: pointer;
+    background-color: #005fa3;
+    transform: translateY(-2px);
+}
