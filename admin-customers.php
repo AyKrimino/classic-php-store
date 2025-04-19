@@ -18,6 +18,22 @@ function loadCustomers($connection) {
     return $rows;
 }
 
+function deleteCustomer($connection, $data) {
+    $userID = (int)$data["user_id"];
+    
+    $query = "DELETE FROM User WHERE user_id = $userID";
+    $res = mysqli_query($connection, $query);
+    
+    if ($res) {
+        return "User with id " . $userID . " deleted successfully.";
+    }
+    return "Error on delete User with id " . $userID;
+}
+
+if (isset($_POST["delete"])) {
+    deleteCustomer($connection, $_POST);
+}
+
 $customers = loadCustomers($connection);
 ?>
 
@@ -95,8 +111,8 @@ $customers = loadCustomers($connection);
                                     <path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/>
                                     <path d="m15 5 3 3"/>
                                 </svg>
-                                <form action="#" method="POST" class="delete-form" style="display:inline-block;">
-                                    <input type="hidden" name="customer_id" value="<?php echo $customer['user_id']; ?>" />
+                                <form action="admin-customers.php" method="POST" class="delete-form" style="display:inline-block;">
+                                    <input type="hidden" name="user_id" value="<?php echo $customer['user_id']; ?>" />
                                     <button type="submit" name="delete" class="delete-btn">
                                         <svg 
                                             class="lucide lucide-trash2-icon lucide-trash-2 delete"
