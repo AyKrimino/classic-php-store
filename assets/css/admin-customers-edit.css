@@ -31,6 +31,13 @@
     transition: all 0.3s ease;
 }
 
+.content-section input[readonly]
+{
+    font-weight: bold;
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
 .content-section input:focus {
     border-color: var(--admin-accent);
     background-color: #ffffff;
