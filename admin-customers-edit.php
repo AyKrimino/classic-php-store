@@ -18,7 +18,40 @@ function loadCustomer($connection, $userID) {
     return mysqli_fetch_assoc($res);
 }
 
+function updateCustomer($connection, $data, $userID) {
+    $name = $data["name"];
+    $email = $data["email"];
+    $phone = $data["phone"];
+    $address = $data["address"];
+    $currentDate = date("Y-m-d H:i:s");
+
+    $userUpdateQuery = "UPDATE User set name = ?, email = ?, phone = ?, updated_at = ? WHERE user_id = ?";
+    $userUpdateStatement = mysqli_prepare($connection, $userUpdateQuery);
+    if (!$userUpdateStatement) {
+        return "Error preparing query " . mysqli_error($connection);
+    }
+    mysqli_stmt_bind_param($userUpdateStatement, "ssssi", $name, $email, $phone, $currentDate, $userID);
+    if (!mysqli_stmt_execute($userUpdateStatement)) {
+        return "Error executing statement.";
+    }
+
+    $customerUpdateQuery = "UPDATE Customer SET address = ? WHERE user_id = ?";
+    $customerUpdateStatement = mysqli_prepare($connection, $customerUpdateQuery);
+    if (!$customerUpdateStatement) {
+        return "Error preparing query " . mysqli_error($connection);
+    }
+    mysqli_stmt_bind_param($customerUpdateStatement, "si", $address, $userID);
+    if (!mysqli_stmt_execute($customerUpdateStatement)) {
+        return "Error executing statement.";
+    }
+    header("location:admin-customers-edit.php?id=$userID");
+}
+
 $customer = loadCustomer($connection, $userID);
+
+if (isset($_POST["edit"])) {
+    updateCustomer($connection, $_POST, (int)$userID);
+}
 ?>
 
 <!DOCTYPE html>
