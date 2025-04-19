@@ -2,6 +2,10 @@
 include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php");
 include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/db_connection.php");
 
+if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === "admin") {
+    header("location:admin-dashboard.php");
+}
+
 /**
  * login user
  *
