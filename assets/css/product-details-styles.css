@@ -34,6 +34,8 @@
 
 .slider-section img {
     width: calc((100% - 20px) / 3);
+    height: 100px;
+    object-fit: cover;
     cursor: pointer;
     border: 2px solid transparent;
     border-radius: 4px;
