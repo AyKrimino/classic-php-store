@@ -75,7 +75,7 @@ $products = loadProducts($connection, $subCategories);
             <?php } else { ?>
                 <span class="out-of-stock">Out of Stock</span>
             <?php } ?>
-            <a class="btn view-details">
+            <a class="btn view-details" href="./product-details.php?id=<?php echo $product["product_id"]; ?>">
                 View Details
             </a>
         </div>
