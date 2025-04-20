@@ -57,7 +57,7 @@
     color: var(--accent-color);
 }
 
-.delete-form button.delete-btn {
+.delete-btn {
     background: none;
     border: none;
     padding: 0;
@@ -65,7 +65,7 @@
     cursor: pointer;
 }
 
-.delete-form button.delete-btn svg {
+.delete-btn svg {
     fill: transparent;
     stroke: #ffffff;
 }
@@ -107,3 +107,4 @@
     accent-color: var(--admin-accent);
     cursor: pointer;
 }
+
