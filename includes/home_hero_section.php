@@ -25,11 +25,13 @@ $categories = loadCategories($connection);
         </div>
         <ul class="category-list">
             <?php foreach ($categories as $category) { ?>
-            <li>
-                <i class="fas fa-desktop"></i>
-                <?php echo strtoupper($category["name"]); ?> 
-                <span>›</span>
-            </li>
+            <a href="products.php?category=<?php echo urlencode($category["name"]); ?>">
+                <li>
+                    <i class="fas fa-desktop"></i>
+                    <?php echo htmlspecialchars(strtoupper($category["name"])); ?> 
+                    <span>›</span>
+                </li>
+            </a>
             <?php } ?>
         </ul>
     </div>
