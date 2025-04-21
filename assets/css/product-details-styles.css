@@ -167,3 +167,25 @@
 .related-products-title {
     margin-top: 40px;
 }
+
+.action-buttons {
+    margin: 20px 0;
+}
+
+.btn.add-to-cart {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+}
+
+.btn.add-to-cart:hover {
+    background-color: #cc7400;
+}

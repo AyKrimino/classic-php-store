@@ -108,6 +108,15 @@ $relatedProducts = getRelatedProducts($connection, (int)$productID);
                         <h3 class="stock"><?php echo ($product["stock"] > 0) ? "In Stock" : "Out Of Stock"; ?></h3>
                         <h1 class="price"><?php echo $product["price"]; ?> DT</h1>
                     </div>
+
+                    <?php if($product["stock"] > 0) { ?>
+                    <div class="action-buttons">
+                        <button class="btn add-to-cart">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <?php } ?>
+
                     <div class="line"></div>
                     <p><?php echo $product["description"]; ?></p>
                 </div>
