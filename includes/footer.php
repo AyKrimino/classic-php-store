@@ -48,10 +48,10 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php")
                 <h3>Company</h3>
                 <ul class="company-links">
                     <li>
-                        <a href="#">About Us</a>
+                        <a href="<?php echo BASE_URL; ?>about-us.php">About Us</a>
                     </li>
                     <li>
-                        <a href="./products.php">Our Products</a>
+                        <a href="<?php echo BASE_URL; ?>products.php">Our Products</a>
                     </li>
                     <li>
                         <a href="#">Contact Us</a>

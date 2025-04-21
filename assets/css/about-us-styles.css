@@ -1,0 +1,90 @@
+.container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.about-hero {
+    background-color: var(--accent-color);
+    color: var(--white);
+    text-align: center;
+    padding: 80px 0;
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.about-hero .tagline {
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.about-content {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.about-content h2 {
+    font-size: 2.25rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.about-content .intro {
+    font-size: 1.1rem;
+    color: var(--body-color);
+    margin-bottom: 50px;
+    line-height: 1.6;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.feature {
+    flex: 0 1 calc(33.333% - 30px);
+    background-color: var(--white);
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.feature h3 {
+    font-size: 1.25rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 1rem;
+    color: var(--body-color);
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .feature {
+        flex: 0 1 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .feature {
+        flex: 0 1 100%;
+    }
+    .about-hero {
+        padding: 60px 0;
+    }
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    .about-hero .tagline {
+        font-size: 1.25rem;
+    }
+}
