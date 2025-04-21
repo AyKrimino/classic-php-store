@@ -1,0 +1,83 @@
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.how-hero {
+    background-color: var(--accent-color);
+    color: var(--white);
+    text-align: center;
+    padding: 80px 0;
+}
+
+.how-hero h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.how-hero .tagline {
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.steps-section {
+    padding: 60px 0;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.step {
+    text-align: center;
+    background-color: var(--white);
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.step .fas {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.step h3 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 1rem;
+    color: var(--body-color);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .how-hero {
+        padding: 60px 0;
+    }
+    .how-hero h1 {
+        font-size: 2.5rem;
+    }
+    .how-hero .tagline {
+        font-size: 1.25rem;
+    }
+    .steps-section {
+        padding: 40px 0;
+    }
+    .step {
+        padding: 20px 15px;
+    }
+}
