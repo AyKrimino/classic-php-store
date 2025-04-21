@@ -29,8 +29,8 @@ function getCategoryNameBySubCategoryID($connection, $subCategoryID) {
     return mysqli_fetch_assoc($res)["name"];
 }
 
-function getProducts($connection) {
-    $query = "select * from Product limit 10";
+function getProducts($connection, $startAt, $perPage) {
+    $query = "select * from Product limit $startAt, $perPage";
     $res = mysqli_query($connection, $query);
     $rows = [];
     while ($row = mysqli_fetch_assoc($res)) {
@@ -41,7 +41,25 @@ function getProducts($connection) {
     return $rows;
 }
 
-$products = getProducts($connection);
+function getPagesNumber($connection, $perPage) {
+    $query = "select count(*) as total from Product";
+    $res = mysqli_fetch_assoc(mysqli_query($connection, $query));
+    $totalPages = (int)ceil($res["total"] / $perPage);
+    return $totalPages;
+}
+
+$perPage = 10;
+$page = (isset($_GET["page"])) ? (int)$_GET["page"] : 1;
+if ($page < 1) {
+    header("location:products.php?page=1");
+}
+$startAt = $perPage * ($page - 1);
+$pages = getPagesNumber($connection, $perPage);
+if ($page > $pages) {
+    header("location:products.php?page=$pages");
+}
+
+$products = getProducts($connection, $startAt, $perPage);
 ?>
 
 <!DOCTYPE html>
@@ -96,9 +114,24 @@ $products = getProducts($connection);
             </div>
         </div>
         <div class="pagination">
-            <a href="#" class="prev">PREV</a>
-            <a href="#" class="curr">2</a>
-            <a href="#" class="next">NEXT</a>
+            <a 
+                href="products.php?page=<?php echo ($page > 1) ? $page - 1 : 1; ?>" 
+                class="prev <?php echo ($page <= 1) ? "disabled" : ""; ?>"
+            >
+                PREV
+            </a>
+            <a 
+                href="products.php?page=<?php echo $page; ?>" 
+                class="curr"
+            >
+                <?php echo $page; ?>
+            </a>
+            <a 
+                href="products.php?page=<?php echo ($page < $pages) ? $page + 1 : $pages; ?>" 
+                class="next <?php echo ($page >= $pages) ? "disabled" : ""; ?>"
+            >
+                NEXT
+            </a>
         </div>
         <script src="./assets/js/productsList.js"></script>
         <?php include_once("./includes/footer.php"); ?>

@@ -159,3 +159,9 @@
     padding: 4px 16px;
     border-radius: 4px;
 }
+
+.pagination .disabled {
+    background: var(--border-color);
+    color: var(--header-bg);
+    cursor: not-allowed;
+}
