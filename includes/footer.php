@@ -64,7 +64,7 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php")
             <div class="ressources">
                 <h3>Ressources</h3>
                 <ul class="ressources-links">
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>faqs.php">FAQs</a></li>
                     <li><a href="#">Terms Of Use</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
