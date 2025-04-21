@@ -51,7 +51,7 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php")
                         <a href="#">About Us</a>
                     </li>
                     <li>
-                        <a href="#">Our Products</a>
+                        <a href="./products.php">Our Products</a>
                     </li>
                     <li>
                         <a href="#">Contact Us</a>

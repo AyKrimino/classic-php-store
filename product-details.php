@@ -7,7 +7,7 @@ if (!isset($_SESSION["user_id"]) || !isset($_SESSION["email"])) {
 }
 
 if (!isset($_GET["id"])) {
-    header("location:index.php");
+    header("location:products.php");
 } else {
     $productID = $_GET["id"];
 }
@@ -37,11 +37,17 @@ function getCategoryNameBySubCategoryID($connection, $subCategoryID) {
 
 function getProduct($connection, $productID) {
     $query = "select * from Product where product_id = $productID";
+
     $res = mysqli_query($connection, $query);
     if (!$res) {
         return null;
     }
+
     $product = mysqli_fetch_assoc($res);
+    if ($product === null || $product === false) {
+        return null;
+    }
+
     $product["subCategory"] = getSubCategoryNameByID($connection, (int)$product["subcategory_id"]);
     $product["category"] = getCategoryNameBySubCategoryID($connection, (int)$product["subcategory_id"]);
     return $product;
@@ -69,7 +75,7 @@ function getRelatedProducts($connection, $productID) {
 
 $product = getProduct($connection, (int)$productID);
 if ($product === null) {
-    header("location:index.php");
+    header("location:products.php");
 }
 
 $relatedProducts = getRelatedProducts($connection, (int)$productID);

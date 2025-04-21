@@ -82,6 +82,6 @@ $products = loadProducts($connection, $subCategories);
     </div>
     <?php } ?>
     <div class="see-all-products-section">
-        <a href="#" class="btn see-all">See All Products</a>
+        <a href="./products.php" class="btn see-all">See All Products</a>
     </div>
 </section>
