@@ -29,8 +29,18 @@ function getCategoryNameBySubCategoryID($connection, $subCategoryID) {
     return mysqli_fetch_assoc($res)["name"];
 }
 
-function getProducts($connection, $startAt, $perPage) {
+function getProducts($connection, $startAt, $perPage, $categoryName) {
     $query = "select * from Product limit $startAt, $perPage";
+    if ($categoryName !== "") {
+        $query = "
+        select * 
+        from Product, Subcategory, Category
+        where Product.subcategory_id = Subcategory.subcategory_id
+        and Subcategory.category_id = Category.category_id
+        and Category.name = '$categoryName'
+        limit $startAt, $perPage;
+        ";
+    }
     $res = mysqli_query($connection, $query);
     $rows = [];
     while ($row = mysqli_fetch_assoc($res)) {
@@ -41,25 +51,36 @@ function getProducts($connection, $startAt, $perPage) {
     return $rows;
 }
 
-function getPagesNumber($connection, $perPage) {
+function getPagesNumber($connection, $perPage, $categoryName) {
     $query = "select count(*) as total from Product";
+    if ($categoryName !== "") {
+        $query = "
+        select count(*) as total
+        from Product, Subcategory, Category
+        where Product.subcategory_id = Subcategory.subcategory_id
+        and Subcategory.category_id = Category.category_id
+        and Category.name = '$categoryName'
+        ";
+    }
     $res = mysqli_fetch_assoc(mysqli_query($connection, $query));
     $totalPages = (int)ceil($res["total"] / $perPage);
     return $totalPages;
 }
 
-$perPage = 10;
+$category = (isset($_GET["category"])) ? $_GET["category"] : "";
+
+$perPage = 5;
 $page = (isset($_GET["page"])) ? (int)$_GET["page"] : 1;
 if ($page < 1) {
     header("location:products.php?page=1");
 }
 $startAt = $perPage * ($page - 1);
-$pages = getPagesNumber($connection, $perPage);
+$pages = getPagesNumber($connection, $perPage, $category);
 if ($page > $pages) {
     header("location:products.php?page=$pages");
 }
 
-$products = getProducts($connection, $startAt, $perPage);
+$products = getProducts($connection, $startAt, $perPage, $category);
 ?>
 
 <!DOCTYPE html>
@@ -115,19 +136,19 @@ $products = getProducts($connection, $startAt, $perPage);
         </div>
         <div class="pagination">
             <a 
-                href="products.php?page=<?php echo ($page > 1) ? $page - 1 : 1; ?>" 
+                href="products.php?<?php echo ($category !== "") ? "category=$category&" : ""; ?>page=<?php echo ($page > 1) ? $page - 1 : 1; ?>" 
                 class="prev <?php echo ($page <= 1) ? "disabled" : ""; ?>"
             >
                 PREV
             </a>
             <a 
-                href="products.php?page=<?php echo $page; ?>" 
+                href="products.php?<?php echo ($category !== "") ? "category=$category&" : ""; ?>page=<?php echo $page; ?>" 
                 class="curr"
             >
                 <?php echo $page; ?>
             </a>
             <a 
-                href="products.php?page=<?php echo ($page < $pages) ? $page + 1 : $pages; ?>" 
+                href="products.php?<?php echo ($category !== "") ? "category=$category&" : ""; ?>page=<?php echo ($page < $pages) ? $page + 1 : $pages; ?>" 
                 class="next <?php echo ($page >= $pages) ? "disabled" : ""; ?>"
             >
                 NEXT
