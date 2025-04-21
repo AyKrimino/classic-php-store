@@ -14,3 +14,19 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	});
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const wrapper = document.querySelector(".related-products-wrapper");
+  const prevBtn = document.getElementById("related-prev");
+  const nextBtn = document.getElementById("related-next");
+
+  const scrollAmount = wrapper.clientWidth * 0.7;
+
+  prevBtn.addEventListener("click", () => {
+    wrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+
+  nextBtn.addEventListener("click", () => {
+    wrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+});

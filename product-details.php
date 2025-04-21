@@ -47,11 +47,32 @@ function getProduct($connection, $productID) {
     return $product;
 }
 
+function getRelatedProducts($connection, $productID) {
+    $query = "
+    select distinct p2.*
+    from Product as p1, Product as p2, Subcategory as s1, Subcategory as s2
+    where p1.product_id = $productID
+    and p2.product_id != p1.product_id
+    and s1.subcategory_id = p1.subcategory_id
+    and s2.subcategory_id = p2.subcategory_id
+    and ( p2.subcategory_id = p1.subcategory_id
+    or s2.category_id = s1.category_id
+    );
+    ";
+    $res = mysqli_query($connection, $query);
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($res)) {
+        array_push($rows, $row);
+    }
+    return $rows;
+}
+
 $product = getProduct($connection, (int)$productID);
 if ($product === null) {
     header("location:index.php");
 }
 
+$relatedProducts = getRelatedProducts($connection, (int)$productID);
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +112,21 @@ if ($product === null) {
                     <p><?php echo $product["description"]; ?></p>
                 </div>
             </div>
-            <div class="related-products-section"></div>
+            <h1 class="related-products-title">Products related to this item</h1>
+            <div class="related-products-section">
+                <svg id="related-prev" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                <div class="related-products-wrapper">
+                    <?php foreach ($relatedProducts as $product) { ?>
+                    <a href="product-details.php?id=<?php echo $product["product_id"]; ?>" class="related-product-card">
+                            <img src="<?php echo getCorrectImagePath($product["image1"]); ?>" alt="image1">
+                            <h3><?php echo htmlspecialchars($product["name"]); ?></h3>
+                            <h3 class="company"><?php echo $product["company"]; ?></h3>
+                            <h2><?php echo $product["price"]; ?> DT</h2>
+                    </a>
+                    <?php } ?>
+                </div>
+                <svg id="related-next" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
         </div>
         <?php include_once("./includes/footer.php"); ?>
         <script src="./assets/js/product-details.js"></script>
