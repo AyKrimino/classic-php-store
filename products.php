@@ -95,6 +95,11 @@ $products = getProducts($connection);
                 <?php } ?>
             </div>
         </div>
+        <div class="pagination">
+            <a href="#" class="prev">PREV</a>
+            <a href="#" class="curr">2</a>
+            <a href="#" class="next">NEXT</a>
+        </div>
         <script src="./assets/js/productsList.js"></script>
         <?php include_once("./includes/footer.php"); ?>
     </body>

@@ -125,3 +125,37 @@
 .btn.add-to-cart:hover {
     background-color: #cc7400;
 }
+
+.pagination {
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background: var(--header-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 10px 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 4px;
+}
+
+.pagination .prev, .pagination .next {
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.pagination .prev:hover, .pagination .next:hover {
+    color: var(--header-bg);
+    background: var(--border-color);
+}
+
+.pagination .curr {
+    background: var(--border-color);
+    color: var(--header-bg);
+    border: 1px solid var(--border-color);
+    padding: 4px 16px;
+    border-radius: 4px;
+}
