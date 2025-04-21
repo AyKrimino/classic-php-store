@@ -69,7 +69,7 @@ function getPagesNumber($connection, $perPage, $categoryName) {
 
 $category = (isset($_GET["category"])) ? $_GET["category"] : "";
 
-$perPage = 5;
+$perPage = 10;
 $page = (isset($_GET["page"])) ? (int)$_GET["page"] : 1;
 if ($page < 1) {
     header("location:products.php?page=1");
