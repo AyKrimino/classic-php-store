@@ -15,10 +15,41 @@ function getUserByID($connection, $userID) {
     return mysqli_fetch_assoc($res);
 }
 
-$userID = $_SESSION["user_id"];
+function updateAccountDetails($connection, $userID, $data) {
+    $name = $data["name"];
+    $phone = $data["phone"];
+    $address = $data["address"];
+
+    $userUpdateQuery = "UPDATE User SET name = ?, phone = ? WHERE user_id = ?";
+    $userUpdateStatement = mysqli_prepare($connection, $userUpdateQuery);
+    if (!$userUpdateStatement) {
+        return "Error preparing query " . mysqli_error($connection);
+    }
+    mysqli_stmt_bind_param($userUpdateStatement, "ssi", $name, $phone, $userID);
+    if (!mysqli_stmt_execute($userUpdateStatement)) {
+        return "Error executing statement.";
+    }
+
+    $customerUpdateQuery = "UPDATE Customer SET address = ? WHERE user_id = ?";
+    $customerUpdateStatement = mysqli_prepare($connection, $customerUpdateQuery);
+    if (!$customerUpdateStatement) {
+        return "Error preparing query " . mysqli_error($connection);
+    }
+    mysqli_stmt_bind_param($customerUpdateStatement, "si", $address, $userID);
+    if (!mysqli_stmt_execute($customerUpdateStatement)) {
+        return "Error executing statement.";
+    }
+    header("location:my-account.php");
+}
+
+$userID = (int)$_SESSION["user_id"];
 $user = getUserByID($connection, $userID);
 if ($user === null) {
     header("location:sign-in.php");
+}
+
+if (isset($_POST["update_profile"])) {
+    updateAccountDetails($connection, $userID, $_POST);
 }
 ?>
 

@@ -41,7 +41,7 @@ if ($user === null) {
                 <img src="assets/images/avatar.png" alt="Account Avatar" />
             </div>
             <div class="account-buttons">
-                <a href="#" class="manage-account-btn">Manage account</a>
+                <a href="./manage-account.php" class="manage-account-btn">Manage account</a>
                 <a href="./logout.php" class="logout-btn">Logout</a>
             </div>
             <div class="account-info">
