@@ -1,3 +1,27 @@
+<?php 
+include_once("./config/config.php");
+include_once("./config/db_connection.php");
+
+if (!isset($_SESSION["user_id"]) || !isset($_SESSION["email"])) {
+    header("location:sign-in.php");
+}
+
+function getUserByID($connection, $userID) {
+    $query = "select * from User, Customer where User.user_id = Customer.user_id and User.user_id = $userID";
+    $res = mysqli_query($connection, $query);
+    if (!$res) {
+        return null;
+    }
+    return mysqli_fetch_assoc($res);
+}
+
+$userID = $_SESSION["user_id"];
+$user = getUserByID($connection, $userID);
+if ($user === null) {
+    header("location:sign-in.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,24 +42,24 @@
             </div>
             <div class="account-buttons">
                 <a href="#" class="manage-account-btn">Manage account</a>
-                <a href="#" class="logout-btn">Logout</a>
+                <a href="./logout.php" class="logout-btn">Logout</a>
             </div>
             <div class="account-info">
-                <h1>Saimon Hewitt</h1>
-                <h3>saimon@gmail.com</h3>
+                <h1><?php echo $user["name"]; ?></h1>
+                <h3><?php echo $user["email"]; ?></h3>
                 <div class="phone">
                     <h3>Phone Number</h3>
-                    <h3>(+91) 90129 83208</h3>
+                    <h3><?php echo $user["phone"]; ?></h3>
                 </div>
                 <div class="line"></div>
                 <div class="address">
                     <h3>Address</h3>
-                    <h3>123 Demo Street, Sample City, Country</h3>
+                    <h3><?php echo $user["address"]; ?></h3>
                 </div>
                 <div class="line"></div>
                 <div class="joined-at">
                     <h3>Member Since</h3>
-                    <h3>15 Jan 2025</h3>
+                    <h3><?php echo date_format(date_create($user["created_at"]), "Y-m-d"); ?></h3>
                 </div>
             </div>
         </div>

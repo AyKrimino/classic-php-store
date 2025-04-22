@@ -15,7 +15,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php")
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="<?php echo BASE_URL; ?>my-account.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             My Account
                         </a>
