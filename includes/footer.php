@@ -75,7 +75,7 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php")
                     <?php 
                     if (isset($_SESSION["user_id"]) && isset($_SESSION["email"])) {
                     ?>
-<li><a href="<?php echo BASE_URL ?>profile.php">My Account</a></li>
+<li><a href="<?php echo BASE_URL ?>my-account.php">My Account</a></li>
 <li><a href="<?php echo BASE_URL ?>logout.php">Logout</a></li>
                     <?php
                     } else {
