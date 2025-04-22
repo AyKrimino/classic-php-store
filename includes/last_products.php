@@ -69,9 +69,12 @@ $products = loadProducts($connection, $subCategories);
 
         <div class="product-actions">
             <?php if($product["stock"] > 0) { ?>
-                <button class="btn add-to-cart">
+            <form action="./my-cart.php" method="POST">
+                <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>" />
+                <button class="btn add-to-cart" name="add_to_cart">
                     Add to Cart
                 </button>
+            </form>
             <?php } else { ?>
                 <span class="out-of-stock">Out of Stock</span>
             <?php } ?>

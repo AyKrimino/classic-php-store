@@ -121,9 +121,12 @@ $products = getProducts($connection, $startAt, $perPage, $category);
 
                         <?php if($product["stock"] > 0) { ?>
                         <div class="action-buttons">
-                            <button class="btn add-to-cart">
-                                Add to Cart
-                            </button>
+                            <form action="./my-cart.php" method="POST">
+                                <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>" />
+                                <button class="btn add-to-cart" name="add_to_cart">
+                                    Add to Cart
+                                </button>
+                            </form>
                         </div>
                         <?php } ?>
 
