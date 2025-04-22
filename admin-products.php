@@ -306,6 +306,6 @@ $products = loadProducts($connection, $subCategories);
         </main>
         <?php include_once("./includes/admin_footer.php"); ?>
 
-        <script src="./assets/js/products.js"></script>
+        <script src="./assets/js/adminProducts.js"></script>
     </body>
 </html>

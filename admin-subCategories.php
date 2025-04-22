@@ -204,6 +204,6 @@ $subCategories = loadSubCategories($connection);
         </main>
         <?php include_once("./includes/admin_footer.php"); ?>
 
-        <script src="./assets/js/subCategories.js"></script>
+        <script src="./assets/js/adminSubCategories.js"></script>
     </body>
 </html>

@@ -35,6 +35,12 @@ const hiddenInput = document.getElementById("product_id");
 
 editButtons.forEach(function(editButton) {
 	editButton.addEventListener("click", function(e) {
+		// Scroll to top
+		document.body.scrollTop = 0; // For Safari
+		document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+		nameInput.focus();
+
 		const productID = this.dataset.productId;
 		const productName = this.dataset.name;
 		const productDescription = this.dataset.description;

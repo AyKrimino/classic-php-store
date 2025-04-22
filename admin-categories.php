@@ -166,6 +166,6 @@ $categories = loadCategories($connection);
         </main>
         <?php include_once("./includes/admin_footer.php"); ?>
 
-        <script src="./assets/js/categories.js"></script>
+        <script src="./assets/js/adminCategories.js"></script>
     </body>
 </html>
