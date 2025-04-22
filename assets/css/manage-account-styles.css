@@ -1,0 +1,91 @@
+.manage-account-page {
+  padding: 60px 0;
+}
+
+.container {
+  max-width: 40%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.manage-account-page h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 40px;
+}
+
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.account-form {
+  background-color: var(--header-bg);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.account-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.account-form label {
+  display: block;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+.account-form label span {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.account-form input,
+.account-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: #fff;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.account-form input[type="email"] {
+    color: var(--muted-text);
+    cursor: default;
+    background-color: #eee;
+}
+
+.account-form input:focus,
+.account-form textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--accent-color);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #cc7400;
+  transform: translateY(-2px);
+}
+
