@@ -124,6 +124,10 @@ if (isset($_POST["remove_item"])) {
             <div class="container">
                 <h1>My Cart</h1>
 
+                <?php if (count($_SESSION["cart"]) === 0) { ?>
+                <h3 class="empty-cart">Your Cart Is Empty.</h3>
+                <?php } else { ?>
+
                 <table class="cart-table">
                     <thead>
                         <tr>
@@ -178,6 +182,7 @@ if (isset($_POST["remove_item"])) {
                         </tr>
                     </tfoot>
                 </table>
+                <?php } ?>
             </div>
         </main>
         <?php include_once("./includes/footer.php"); ?>

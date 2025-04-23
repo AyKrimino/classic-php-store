@@ -4,11 +4,16 @@
     padding: 40px 20px;
 }
 
-.cart-page h1 {
+.cart-page h1, h3 {
     font-size: 2.25rem;
     color: var(--primary-color);
     text-align: center;
     margin-bottom: 30px;
+}
+
+.empty-cart {
+    font-size: 1.5rem;
+    color: var(--muted-text);
 }
 
 .cart-table {
