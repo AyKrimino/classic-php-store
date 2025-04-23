@@ -86,6 +86,11 @@ function decrementCartItem($connection, &$products, &$cart, $productID) {
     }
 }
 
+function removeCartItem(&$cart, $productID) {
+    unset($cart[$productID]);
+    header("location:my-cart.php"); exit;
+}
+
 handleAddToCart();
 
 $products = getAddedToCartProducts($connection, $_SESSION["cart"]);
@@ -97,6 +102,10 @@ if (isset($_POST["increment"])) {
 
 if (isset($_POST["decrement"])) {
     decrementCartItem($connection, $products, $_SESSION["cart"], (int)$_POST["product_id"]);
+}
+
+if (isset($_POST["remove_item"])) {
+    removeCartItem($_SESSION["cart"], (int)$_POST["product_id"]);
 }
 ?>
 
@@ -151,7 +160,10 @@ if (isset($_POST["decrement"])) {
                             <td class="product-price"><?php echo number_format($product["price"], 2); ?> DT</td>
                             <td class="product-subtotal"><?php echo number_format($product["subtotal"], 2); ?> DT</td>
                             <td class="product-remove">
-                                <button class="remove-btn">Remove</button>
+                                <form action="./my-cart.php" method="POST">
+                                    <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>" />
+                                    <button class="remove-btn" name="remove_item">Remove</button>
+                                </form>
                             </td>
                         </tr>
                         <?php } ?>
