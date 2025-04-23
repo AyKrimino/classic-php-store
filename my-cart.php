@@ -56,10 +56,48 @@ function getTotal($products) {
     return $res;
 }
 
+function incrementCartItem($connection, &$products, &$cart, $productID) {
+    $product = getProductByID($connection, $productID);
+    if ($product === null) return;
+
+    foreach ($products as $product) {
+        if ($product["product_id"] == $productID) {
+            if ($product["stock"] >= $product["qty"] + 1) {
+                $product["qty"]++;
+                $cart[$productID] = $product["qty"];
+            }
+            header("location:my-cart.php");exit;
+        }
+    }
+}
+
+function decrementCartItem($connection, &$products, &$cart, $productID) {
+    $product = getProductByID($connection, $productID);
+    if ($product === null) return;
+
+    foreach ($products as $product) {
+        if ($product["product_id"] == $productID) {
+            if ($product["qty"] - 1 >= 0) {
+                $product["qty"]--;
+                $cart[$productID] = $product["qty"];
+            }
+            header("location:my-cart.php");exit;
+        }
+    }
+}
+
 handleAddToCart();
 
 $products = getAddedToCartProducts($connection, $_SESSION["cart"]);
 $total = getTotal($products);
+
+if (isset($_POST["increment"])) {
+    incrementCartItem($connection, $products, $_SESSION["cart"], (int)$_POST["product_id"]);
+}
+
+if (isset($_POST["decrement"])) {
+    decrementCartItem($connection, $products, $_SESSION["cart"], (int)$_POST["product_id"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -99,9 +137,15 @@ $total = getTotal($products);
                             </td>
                             <td class="product-qty">
                                 <div class="qty-control">
-                                    <button class="qty-btn minus">−</button>
+                                    <form action="./my-cart.php" method="POST">
+                                        <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>" />
+                                        <button class="qty-btn minus" name="decrement">−</button>
+                                    </form>
                                     <input type="text" value="<?php echo $product["qty"]; ?>">
-                                    <button class="qty-btn plus">+</button>
+                                    <form action="./my-cart.php" method="POST">
+                                        <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>" />
+                                        <button class="qty-btn plus" name="increment">+</button>
+                                    </form>
                                 </div>
                             </td>
                             <td class="product-price"><?php echo number_format($product["price"], 2); ?> DT</td>
