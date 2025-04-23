@@ -26,36 +26,6 @@ function handleAddToCart() {
     }
 }
 
-function getProductByID($connection, $productID) {
-    $query = "select * from Product where product_id = $productID";
-    $res = mysqli_query($connection, $query);
-    if (!$res) {
-        return null;
-    }
-    return mysqli_fetch_assoc($res);
-}
-
-function getAddedToCartProducts($connection, $cart) {
-    $products = [];
-    foreach ($cart as $productID => $qty) {
-        $product = getProductByID($connection, $productID);
-        if ($product !== null && $product["stock"] >= $qty) {
-            $product["subtotal"] = $qty * $product["price"];
-            $product["qty"] = $qty;
-            array_push($products, $product);
-        }
-    }
-    return $products;
-}
-
-function getTotal($products) {
-    $res = 0;
-    foreach ($products as $product) {
-        $res += $product["subtotal"];
-    }
-    return $res;
-}
-
 function incrementCartItem($connection, &$products, &$cart, $productID) {
     $product = getProductByID($connection, $productID);
     if ($product === null) return;
@@ -92,9 +62,6 @@ function removeCartItem(&$cart, $productID) {
 }
 
 handleAddToCart();
-
-$products = getAddedToCartProducts($connection, $_SESSION["cart"]);
-$total = getTotal($products);
 
 if (isset($_POST["increment"])) {
     incrementCartItem($connection, $products, $_SESSION["cart"], (int)$_POST["product_id"]);
