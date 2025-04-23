@@ -1,3 +1,9 @@
+<?php 
+include_once("./config/config.php");
+include_once("./config/db_connection.php");
+require_once("./includes/cart-summary.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

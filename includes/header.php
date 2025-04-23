@@ -2,42 +2,9 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/config.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/classic-php-store/config/db_connection.php");
 
-function getProductByID($connection, $productID) {
-    $query = "select * from Product where product_id = $productID";
-    $res = mysqli_query($connection, $query);
-    if (!$res) {
-        return null;
-    }
-    return mysqli_fetch_assoc($res);
-}
-
-function getAddedToCartProducts($connection, $cart) {
-    $products = [];
-    foreach ($cart as $productID => $qty) {
-        $product = getProductByID($connection, $productID);
-        if ($product !== null && $product["stock"] >= $qty) {
-            $product["subtotal"] = $qty * $product["price"];
-            $product["qty"] = $qty;
-            array_push($products, $product);
-        }
-    }
-    return $products;
-}
-
-function getTotal($products) {
-    $res = 0;
-    foreach ($products as $product) {
-        $res += $product["subtotal"];
-    }
-    return $res;
-}
-
-$cartItemCount = 0;
-$total = 0.0;
-if (isset($_SESSION["cart"]) && isset($_SESSION["user_id"]) && isset($_SESSION["email"])) {
-    $cartItemCount = count($_SESSION["cart"]);
-    $products = getAddedToCartProducts($connection, $_SESSION["cart"]);
-    $total = getTotal($products);
+if (!isset($_SESSION["user_id"]) || !isset($_SESSION["email"])) {
+    $cartItemCount = 0;
+    $cartTotal = 0.0;
 }
 ?>
 
@@ -130,7 +97,7 @@ Sign in
                     </div>
                     <div class="cart_content">
                         <div class="cart_text"><a href="./my-cart.php">Cart</a></div>
-                        <div class="cart_price"><?php echo number_format($total, 2); ?></div>
+                        <div class="cart_price"><?php echo number_format($cartTotal, 2); ?> DT</div>
                     </div>
                 </div>
             </div>

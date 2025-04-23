@@ -1,6 +1,7 @@
 <?php 
 include_once("./config/config.php");
 include_once("./config/db_connection.php");
+require_once("./includes/cart-summary.php");
 
 if (!isset($_SESSION["user_id"]) || !isset($_SESSION["email"])) {
     header("location:sign-in.php");
