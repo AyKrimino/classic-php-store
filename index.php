@@ -18,6 +18,6 @@ require_once("./includes/cart-summary.php");
         <?php include("./includes/home_hero_section.php"); ?>
         <?php include("./includes/last_products.php"); ?>
         <?php include("./includes/footer.php"); ?>
-        <script src="./assets/js/products.js"></script>
+        <script src="./assets/js/productsList.js"></script>
     </body>
 </html>

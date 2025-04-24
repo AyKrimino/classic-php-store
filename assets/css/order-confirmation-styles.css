@@ -1,0 +1,129 @@
+.container {
+    max-width: 50%;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.confirmation-hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.confirmation-hero h1 {
+    line-height: 1.1;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.confirmation-hero p {
+    font-size: 1.1rem;
+    color: var(--body-color);
+}
+
+.order-info {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.order-info h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.info-grid .shipping-address p {
+    margin: 5px 0 0;
+}
+
+.items-summary {
+    margin-bottom: 30px;
+}
+
+.items-summary h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items-table th,
+.items-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--muted-text);
+    vertical-align: middle;
+}
+
+.items-table thead th {
+    background: var(--pure-grey);
+    color: var(--accent-color);
+    text-align: left;
+}
+
+.item-img img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.next-steps {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.next-steps .btn {
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.continue-btn {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+.continue-btn:hover {
+    background-color: #cc7400;
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.orders-btn {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.orders-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    .next-steps {
+        flex-direction: column;
+    }
+}

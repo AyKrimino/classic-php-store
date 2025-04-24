@@ -1,0 +1,107 @@
+.checkout-page .container {
+    max-width: 50%;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.checkout-page h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.checkout-page section {
+    background: var(--white);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.checkout-page h2 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.order-summary table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-summary th,
+.order-summary td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--muted-text);
+}
+
+.order-summary thead th {
+    text-align: left;
+    background: var(--pure-grey);
+    color: var(--accent-color);
+}
+
+.total-label {
+    text-align: right;
+    font-weight: 600;
+}
+
+.total-amount {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.shipping-info label,
+.payment-info label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.shipping-info textarea,
+.shipping-info input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--muted-text);
+    border-radius: 4px;
+    margin-top: 6px;
+    font-size: 1rem;
+}
+
+.payment-info label {
+    font-weight: normal;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.place-order-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    background: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.place-order-btn:hover {
+    background-color: #cc7400;
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.empty-cart {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 40px;
+}
+
+.empty-cart a {
+    color: var(--accent-color);
+    text-decoration: none;
+}

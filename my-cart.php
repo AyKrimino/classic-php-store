@@ -177,7 +177,7 @@ require_once("./includes/cart-summary.php");
                             <td colspan="4" class="total-label">Total:</td>
                             <td class="total-amount"><?php echo number_format($total, 2); ?> DT</td>
                             <td class="checkout-cell">
-                                <a href="#" class="btn checkout-btn">Proceed to Checkout</a>
+                                <a href="./checkout.php" class="btn checkout-btn">Proceed to Checkout</a>
                             </td>
                         </tr>
                     </tfoot>

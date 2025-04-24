@@ -2,6 +2,11 @@
 include_once("./config/config.php");
 include_once("./config/db_connection.php");
 
+function getCorrectImagePath($originalPath) {
+    if ($originalPath === "") return "";
+    return "http://" . HOSTNAME . substr($originalPath, strpos($originalPath, "/classic"));
+}
+
 function getRelativePath($absolutePath) {
     if ($absolutePath === "")
         return "";
@@ -51,9 +56,9 @@ $products = loadProducts($connection, $subCategories);
     <div class="product-card">
         <div class="slider">
             <div class="slides">
-                <img class="product-img" hidden src="<?php echo getRelativePath($product["image1"] ?: ""); ?>" alt="Product Image 1" />
-                <img class="product-img" hidden src="<?php echo getRelativePath($product["image2"] ?: ""); ?>" alt="Product Image 2" />
-                <img class="product-img" hidden src="<?php echo getRelativePath($product["image3"] ?: ""); ?>" alt="Product Image 3" />
+                <img class="product-img" src="<?php echo getCorrectImagePath($product["image1"]); ?>" alt="Product Image 1" />
+                <img class="product-img" hidden src="<?php echo getCorrectImagePath($product["image2"]); ?>" alt="Product Image 2" />
+                <img class="product-img" hidden src="<?php echo getCorrectImagePath($product["image3"]); ?>" alt="Product Image 3" />
             </div>
         </div>
 
