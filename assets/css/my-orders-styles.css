@@ -1,0 +1,72 @@
+.orders-page .container {
+    max-width: 60%;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.orders-page h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.empty-state {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--body-color);
+}
+
+.empty-state a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--muted-text);
+    text-align: left;
+}
+
+.orders-table thead th {
+    background-color: var(--pure-grey);
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    color: #fff;
+}
+
+.badge-pending    { background: #f0ad4e; }
+.badge-processing { background: #f0ad4e; }
+.badge-shipped    { background: #5bc0de; }
+.badge-delivered  { background: #5cb85c; }
+.badge-cancelled  { background: #d9534f; }
+.badge-completed  { background: #5cb85c; } 
+.badge-failed     { background: #d9534f; }
+
+.btn.view-btn {
+    padding: 6px 12px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+}
+
+.btn.view-btn:hover {
+    background-color: #cc7400;
+}
