@@ -137,7 +137,7 @@ $items = getItems($connection, $orderID);
 
                 <section class="next-steps">
                     <a href="index.php" class="btn continue-btn">Continue Shopping</a>
-                    <a href="my-account.php" class="btn orders-btn">View My Orders</a>
+                    <a href="my-orders.php" class="btn orders-btn">View My Orders</a>
                 </section>
             </div>
         </main>

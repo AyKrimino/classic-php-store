@@ -90,7 +90,7 @@ $orders = getOrders($connection, $customerID);
                             <td><span class="status-badge badge-<?php echo $order["order_status"]; ?>"><?php echo ucfirst($order["order_status"]); ?></span></td>
                             <td><span class="status-badge badge-<?php echo $order["payment_status"]; ?>"><?php echo ucfirst($order["payment_status"]); ?></span></td>
                             <td><span class="status-badge badge-<?php echo $order["shipping_status"]; ?>"><?php echo ucfirst($order["shipping_status"]); ?></span></td>
-                            <td><a href="order-details.php?order_id=<?php echo $order["order_id"]; ?>" class="btn view-btn">View Details</a></td>
+                            <td><a href="order-details.php?id=<?php echo $order["order_id"]; ?>" class="btn view-btn">View Details</a></td>
                         </tr>
                         <?php } ?>
                     </tbody>

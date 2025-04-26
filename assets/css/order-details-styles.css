@@ -1,0 +1,148 @@
+.order-details-page .container {
+    max-width: 50%;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+.order-details-page h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.order-details-page .order-date {
+    color: var(--muted-text);
+    margin-bottom: 30px;
+}
+
+.status-tracker {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+}
+
+.status-tracker .step {
+    flex: 1;
+    position: relative;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+
+.status-tracker .step::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto 8px;
+    border-radius: 50%;
+    background: var(--muted-text);
+}
+
+.status-tracker .step-complete {
+    color: var(--accent-color);
+}
+
+.status-tracker .step-complete::before {
+    background: var(--accent-color);
+}
+
+.status-tracker .step-current {
+    color: var(--accent-color);
+}
+
+.status-tracker .step-current::before {
+    background: var(--accent-color);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.info-grid .full-width {
+    grid-column: 1 / -1;
+}
+
+.items-section h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items-table th,
+.items-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--muted-text);
+}
+
+.items-table thead th {
+    background: var(--pure-grey);
+    color: var(--accent-color);
+    text-align: left;
+}
+
+.item-img {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.next-actions {
+    text-align: center;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.next-actions .btn {
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.next-actions .continue {
+    background: var(--accent-color);
+    color: var(--white);
+}
+
+.next-actions .continue:hover {
+    background: #cc7400;
+}
+
+.next-actions .account {
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.next-actions .account:hover {
+    background: var(--accent-color);
+    color: var(--white);
+}
