@@ -1,0 +1,93 @@
+.container {
+    max-width: 60%;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.back-link {
+    color: var(--admin-accent);
+    text-decoration: none;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.back-link:hover { 
+    text-decoration: underline; 
+    color: var(--admin-accent);
+}
+
+.content-section h1 {
+    color: var(--admin-accent);
+    margin-bottom: 20px;
+}
+
+.status-update {
+    background: var(--admin-header-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.status-update h2 {
+    color: var(--admin-text);
+    margin-bottom: 15px;
+}
+
+.status-update label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--admin-text);
+}
+
+.status-update select {
+    padding: 8px;
+    margin-top: 4px;
+    width: 100%;
+    border: 1px solid var(--admin-border);
+    border-radius: 4px;
+    background: var(--admin-bg);
+    color: var(--admin-text);
+}
+
+.update-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: var(--admin-accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.update-btn:hover {
+    background: #005fa3;
+}
+
+.order-info h2 {
+    color: var(--admin-accent);
+    margin-bottom: 15px;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items-table th,
+.items-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--admin-border);
+    text-align: left;
+}
+
+.items-table thead th {
+    background: var(--admin-header-bg);
+    color: var(--admin-accent);
+}
+
+.item-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
