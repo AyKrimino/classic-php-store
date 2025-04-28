@@ -1,0 +1,64 @@
+.content-section .container {
+    max-width: 80%;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.content-section h1 {
+    font-size: 2rem;
+    color: var(--admin-accent);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.empty-state {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--admin-muted);
+}
+
+.admin-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-orders-table th,
+.admin-orders-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--admin-border);
+    text-align: left;
+}
+
+.admin-orders-table thead th {
+    background: var(--admin-header-bg);
+    color: var(--admin-accent);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.85rem;
+}
+
+.badge-pending      { background: #f0ad4e; }
+.badge-processing   { background: #f0ad4e; }
+.badge-shipped      { background: #5bc0de; }
+.badge-delivered    { background: #5cb85c; }
+.badge-cancelled    { background: #d9534f; }
+.badge-completed    { background: #5cb85c; }
+.badge-failed       { background: #d9534f; }
+
+.btn.view {
+    padding: 6px 12px;
+    background: var(--admin-accent);
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn.view:hover {
+    background: #005fa3;
+}
