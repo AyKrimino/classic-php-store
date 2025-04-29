@@ -3,7 +3,13 @@ include_once("./config/config.php");
 include_once("./config/db_connection.php");
 
 function loadCategories($connection) {
-    $query = "SELECT * FROM Category LIMIT 8";
+    $query = "
+    SELECT DISTINCT Category.name
+    FROM Category, Subcategory, Product
+    WHERE Category.category_id = Subcategory.category_id 
+    AND Subcategory.subcategory_id = Product.subcategory_id
+    LIMIT 8;
+    ";
     $res = mysqli_query($connection, $query);
 
     $rows = [];
