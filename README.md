@@ -118,6 +118,65 @@ Use the credentials:
 
 ---
 
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td><img src="screenshots/home.png" width="300"/></td>
+    <td><img src="screenshots/about-us.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/products.png" width="300"/></td>
+    <td><img src="screenshots/cart.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/checkout.png" width="300"/></td>
+    <td><img src="screenshots/order-confirmation.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/orders.png" width="300"/></td>
+    <td><img src="screenshots/order-details.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/sign-in.png" width="300"/></td>
+    <td><img src="screenshots/sign-up.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/account.png" width="300"/></td>
+    <td><img src="screenshots/faqs.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/how-it-works.png" width="300"/></td>
+    <td><img src="screenshots/contact-us.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/support-center.png" width="300"/></td>
+    <td><img src="screenshots/store-location.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/privacy-policy.png" width="300"/></td>
+    <td><img src="screenshots/terms-of-use.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/admin-sign-in.png" width="300"/></td>
+    <td><img src="screenshots/admin-categories.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/admin-sub-categories.png" width="300"/></td>
+    <td><img src="screenshots/admin-products.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/admin-customers.png" width="300"/></td>
+    <td><img src="screenshots/admin-orders.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/admin-edit-customer.png" width="300"/></td>
+    <td><img src="screenshots/admin-edit-order.png" width="300"/></td>
+  </tr>
+</table>
+
+---
+
 ## 📄 License
 This project is for educational purposes. Feel free to use and modify the code as needed.
 
