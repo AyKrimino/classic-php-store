@@ -70,7 +70,7 @@ function getPagesNumber($connection, $perPage, $categoryName) {
 
 $category = (isset($_GET["category"])) ? $_GET["category"] : "";
 
-$perPage = 10;
+$perPage = 12;
 $page = (isset($_GET["page"])) ? (int)$_GET["page"] : 1;
 if ($page < 1) {
     header("location:products.php?page=1");
@@ -98,41 +98,39 @@ $products = getProducts($connection, $startAt, $perPage, $category);
         <div class="products-container">
             <div class="products-section">
                 <?php foreach ($products as $product) { ?>
-                <div class="product-section">
-                    <div class="images-section">
-                        <div class="main-image">
-                            <img src="<?php echo getCorrectImagePath($product["image1"]); ?>" alt="image1">
-                        </div>
-                        <div class="slider-section">
-                            <img src="<?php echo getCorrectImagePath($product["image1"]); ?>" alt="image1">
-                            <img src="<?php echo getCorrectImagePath($product["image2"]); ?>" alt="image2">
-                            <img src="<?php echo getCorrectImagePath($product["image3"]); ?>" alt="image3">
+                <div class="product-card">
+                    <div class="slider">
+                        <div class="slides">
+                            <img class="product-img" src="<?php echo getCorrectImagePath($product["image1"]); ?>" alt="Product Image 1" />
+                            <img class="product-img" hidden src="<?php echo getCorrectImagePath($product["image2"]); ?>" alt="Product Image 2" />
+                            <img class="product-img" hidden src="<?php echo getCorrectImagePath($product["image3"]); ?>" alt="Product Image 3" />
                         </div>
                     </div>
-                    <div class="info-section">
-                        <div class="">
-                            <h1><?php echo $product["name"]; ?></h1>
-                            <h3 class="company"><?php echo $product["company"]; ?></h3>
-                            <h5><?php echo $product["category"]; ?> | <?php echo $product["subCategory"]; ?></h5>
-                        </div>
-                        <div class="price-stock">
-                            <h3 class="stock"><?php echo ($product["stock"] > 0) ? "In Stock" : "Out Of Stock"; ?></h3>
-                            <h1 class="price"><?php echo $product["price"]; ?> DT</h1>
-                        </div>
 
+                    <div class="product-info">
+                        <h3><?php echo htmlspecialchars($product["name"]); ?></h3>
+                        <h5><?php echo htmlspecialchars($product["subCategory"]); ?> | <?php echo htmlspecialchars($product["company"]); ?></h5>
+                        <p><?php echo htmlspecialchars($product["description"]); ?></p>
+                        <p>
+                            <span class="price"><?php echo number_format($product["price"],2); ?> DT</span> |
+                            <span class="stock"><?php echo $product["stock"] > 0 ? "<span style='color: green;'>In Stock</span>" : "<span style='color: #e74c3c;'>Out of Stock</span>"; ?></span>
+                        </p>
+                    </div>
+
+                    <div class="product-actions">
                         <?php if($product["stock"] > 0) { ?>
-                        <div class="action-buttons">
-                            <form action="./my-cart.php" method="POST">
-                                <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>" />
-                                <button class="btn add-to-cart" name="add_to_cart">
-                                    Add to Cart
-                                </button>
-                            </form>
-                        </div>
+                        <form action="./my-cart.php" method="POST">
+                            <input type="hidden" name="product_id" value="<?php echo $product["product_id"]; ?>" />
+                            <button class="btn add-to-cart" name="add_to_cart">
+                                Add to Cart
+                            </button>
+                        </form>
+                        <?php } else { ?>
+                        <span class="out-of-stock">Out of Stock</span>
                         <?php } ?>
-
-                        <div class="line"></div>
-                        <p><?php echo $product["description"]; ?></p>
+                        <a class="btn view-details" href="./product-details.php?id=<?php echo $product["product_id"]; ?>">
+                            View Details
+                        </a>
                     </div>
                 </div>
                 <?php } ?>
